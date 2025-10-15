@@ -1,33 +1,42 @@
 import React, { useState } from 'react'
 import "./Login.css"
 import logo from '../../assets/logo.png'
-import {login,signup} from "../../firebase"
+import netflix_spinner from '../../assets/netflix_spinner.gif';
+import { login,signup } from "../../firebase"
 
 const Login = () => {
   const [signState , setSignState] = useState("Sign In");
   const [name , setName] = useState("");
   const [ email , setEmail] = useState("");
   const [Password,setPassword] = useState("");
+  const [loading , setLoading] = useState("");
 
   const user_auth = async (event)=>{
     event.preventDefault();
+    setLoading(true);
     if(signState==="Sign In"){
       await login(email,Password);
+      
     }else{
       await signup(name,email,Password)
+      
     }
+    setLoading(false);
   }
   return (
+    loading ? <div className="login-spinner">
+      <img src={netflix_spinner} alt="" />
+    </div>:
     <div className='login'>
       <img src={logo} alt="" className='login-logo' />
       <div className="login-form">
         <h1>{signState}</h1>
         <form>
-          {signState==="Sign Up"?<input type="text" placeholder='Your name'/>:<></>}
-          <input value={name} onChange={(e)=>{setName(e.target.value)}} type="text" name="" id="" placeholder='Your name' />
+          {signState==="Sign Up"?
+          <input value={name} onChange={(e)=>{setName(e.target.value)}} type="text" placeholder='Your name'/>:<></>}
           <input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="email" name="" id="" placeholder='Email' />
           <input value={Password} onChange={(e)=>setPassword(e.target.value)} type="text" placeholder='Password' />
-          <button onClick={user_auth}>Sign In</button>
+          <button onClick={user_auth} type='submit'>Sign In</button>
           <div className="form-help">
             <div className="remember">
               <input type="checkbox" />
