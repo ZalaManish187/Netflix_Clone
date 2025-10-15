@@ -9,19 +9,20 @@ import { auth } from './firebase'
 
 const App = () => {
   const navigate = useNavigate();
-  useEffect(()=>{
-    onAuthStateChanged(auth,async (user)=>{
-      if(user){
-        console.log("Logged In");
+  useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("✅ Logged In");
+      navigate("/");
+    } else {
+      console.log("❌ Logged Out");
+      navigate("/login");
+    }
+  });
 
-      }else{
-        console.log("Logged Out");
-       
-       navigate("/login");
-       
-      }
-    })
-  })
+  return () => unsubscribe(); // cleanup
+}, []); // ✅ Run only once
+
   return (
     <div>
       <ToastContainer theme='dark'/>
