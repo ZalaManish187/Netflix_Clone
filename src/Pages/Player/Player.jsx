@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./Player.css"
 import back_arrow_icon from '../../assets/back_arrow_icon.png'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Player = () => {
   const { id } = useParams();
@@ -19,12 +19,16 @@ const Player = () => {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NmZkNzVkODJjNzI2ZmYwMGY3MjgwM2I5YzFhZDRlZSIsIm5iZiI6MTc2MDQzMTEwNy42OTYsInN1YiI6IjY4ZWUwYzAzMWM0NGNmZDVlY2Q2OTUxNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5WEIwTLP46C_Tc_fkqgf8DmV-pwHEAQ6yqap_fwSVl0'
   }
 };
-useEffect(()=>{
+useEffect(() => {
   fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
-  .then(res => res.json())
-  .then(res => setApiData(res.results[0]))
-  .catch(err => console.error(err));
-},[]);
+    .then(response => response.json())
+    .then(response => {
+      console.log("TMDB Video Data:", response.results);
+      setApiData(response.results[0]);
+    })
+    .catch(err => console.error(err));
+}, []);
+
 
 
   return (

@@ -30,7 +30,8 @@ useEffect(()=>{
   .catch(err => console.error(err));
 
   cardsRef.current.addEventListener('wheel',handleWheel);
-},[])
+})
+
   return (
     <div className='title-cards'>
       <h2>{title?title:"Popular on Netflix"}</h2>

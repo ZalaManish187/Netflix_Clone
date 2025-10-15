@@ -6,7 +6,6 @@ import Player from './Pages/Player/Player'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase'
  import { ToastContainer} from 'react-toastify';
- import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const navigate = useNavigate();
@@ -14,11 +13,11 @@ const App = () => {
     onAuthStateChanged(auth,async (user)=>{
       if(user){
         console.log("Logged In");
-        navigate("/");
+
       }else{
         console.log("Logged Out");
        
-        navigate("/login");
+       navigate("/login");
        
       }
     })
