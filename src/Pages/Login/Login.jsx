@@ -35,7 +35,7 @@ const Login = () => {
           {signState==="Sign Up"?
           <input value={name} onChange={(e)=>{setName(e.target.value)}} type="text" placeholder='Your name'/>:<></>}
           <input value={email} onChange={(e)=>{setEmail(e.target.value)}} type="email" name="" id="" placeholder='Email' />
-          <input value={Password} onChange={(e)=>setPassword(e.target.value)} type="text" placeholder='Password' />
+          <input value={Password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder='Password' />
           <button onClick={user_auth} type='submit'>Sign In</button>
           <div className="form-help">
             <div className="remember">
