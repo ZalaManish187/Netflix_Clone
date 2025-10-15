@@ -32,9 +32,9 @@ useEffect(()=>{
       <img src={back_arrow_icon} alt="" onClick={()=>{navigate(-2)}} />
       <iframe width='90%' height='90%' src = {`https://www.youtube.com/embed/${ApiData.key}`} title='trailer' frameBorder='0' allowFullScreen></iframe>
       <div className="player-info">
-        <p>${ApiData.published_at.slice(0,10)}</p>
-        <p>${ApiData.name}</p>
-        <p>${ApiData.typeof}</p>
+        <p>{ApiData.published_at.slice(0,10)}</p>
+        <p>{ApiData.name}</p>
+        <p>{ApiData.type}</p>
       </div>
     </div>
   )

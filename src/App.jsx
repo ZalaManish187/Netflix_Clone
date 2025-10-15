@@ -13,12 +13,13 @@ const App = () => {
   useEffect(()=>{
     onAuthStateChanged(auth,async (user)=>{
       if(user){
-        console.log("login in");
+        console.log("Logged In");
         navigate("/");
       }else{
         console.log("Logged Out");
        
         navigate("/login");
+       
       }
     })
   })
